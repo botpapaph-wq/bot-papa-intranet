@@ -44,18 +44,18 @@
       padding: 24px 20px 64px;
     }
 
-    /* --- MASSIVER STICKY HEADER (DOPPELTE HÖHE) --- */
+    /* --- MASSIVER STICKY HEADER --- */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 32px;
-      min-height: 140px; 
-      padding: 24px 40px; 
+      min-height: 120px; 
+      padding: 20px 40px; 
       margin-bottom: 32px;
       border-radius: 24px;
       border: var(--border-soft);
-      background: linear-gradient(135deg, rgba(0, 224, 255, 0.16), transparent);
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.12), transparent);
       backdrop-filter: blur(20px);
       box-shadow: var(--shadow-soft);
       position: sticky;
@@ -66,23 +66,18 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
     }
 
-    /* Großer Logo-Bereich */
+    /* Neu strukturierter Logo-Container ohne weiße Hintergrund-Box */
     .brand-mark {
-      width: 140px;   
-      height: 90px;   
-      border-radius: 8px;
-      background: #ffffff; 
+      width: 160px;   
+      height: 75px;   
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     .brand-mark img {
@@ -95,19 +90,21 @@
     .brand-text-block {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      padding-left: 20px;
     }
 
     .brand-text-title {
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 20px;
+      font-size: 18px;
       color: #ffffff;
     }
 
     .brand-text-sub {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--accent);
       letter-spacing: 0.03em;
     }
@@ -116,7 +113,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 16px;
+      gap: 14px;
       flex: 1;
     }
 
@@ -147,7 +144,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       font-size: 14px;
     }
 
@@ -369,7 +366,11 @@
       }
       .brand {
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-start;
+      }
+      .brand-text-block {
+        border-left: none;
+        padding-left: 0;
       }
       .grid { grid-template-columns: minmax(0, 1fr); }
       .header-right {
@@ -392,7 +393,7 @@
     <header>
       <div class="brand">
         <div class="brand-mark">
-          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050816'/><circle cx='50' cy='50' r='30' fill='%2300e0ff'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%23ffffff' font-weight='bold'>BOT PAPA</text></svg>" alt="BOT PAPA Logo" />
+          <img src="BOT_PAPA-removebg.png" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 120 60\'><circle cx=\'30\' cy=\'30\' r=\'20\' fill=\'%2300e0ff\'/><text x=\'65\' y=\'35\' font-family=\'sans-serif\' font-size=\'14\' fill=\'%23ffffff\' font-weight=\'bold\'>BOT PAPA</text></svg>';" alt="BOT PAPA Logo" />
         </div>
         <div class="brand-text-block">
           <div class="brand-text-title">Global Hub</div>
