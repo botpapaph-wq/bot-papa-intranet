@@ -44,7 +44,7 @@
       padding: 24px 20px 64px;
     }
 
-    /* --- MASSIVER STICKY HEADER --- */
+    /* --- MASSIVER STICKY HEADER (DOPPELTE HÖHE) --- */
     header {
       display: flex;
       align-items: center;
@@ -69,6 +69,7 @@
       gap: 24px;
     }
 
+    /* Großer Logo-Bereich */
     .brand-mark {
       width: 140px;   
       height: 90px;   
@@ -185,9 +186,7 @@
       transition: transform 0.2s, filter 0.2s;
     }
 
-    .btn-primary span {
-      font-size: 14px;
-    }
+    .btn-primary span { font-size: 14px; }
 
     .btn-primary:hover {
       filter: brightness(1.1);
@@ -238,9 +237,7 @@
       margin: 0 0 12px;
     }
 
-    .hero-title span {
-      color: var(--accent);
-    }
+    .hero-title span { color: var(--accent); }
 
     .hero-sub {
       font-size: 14px;
@@ -272,9 +269,7 @@
       margin-bottom: 14px;
     }
 
-    .card-title strong {
-      color: var(--accent);
-    }
+    .card-title strong { color: var(--accent); }
 
     .news-item {
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -376,9 +371,7 @@
         width: 100%;
         justify-content: space-between;
       }
-      .grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .grid { grid-template-columns: minmax(0, 1fr); }
       .header-right {
         align-items: flex-start;
         width: 100%;
@@ -388,9 +381,7 @@
         flex-wrap: wrap;
         row-gap: 8px;
       }
-      .nav-links {
-        flex-wrap: wrap;
-      }
+      .nav-links { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -401,7 +392,7 @@
     <header>
       <div class="brand">
         <div class="brand-mark">
-          <img src="bot-papa-intranet/pics/BOT PAPA.png" alt="BOT PAPA Logo" />
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050816'/><circle cx='50' cy='50' r='30' fill='%2300e0ff'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%23ffffff' font-weight='bold'>BOT PAPA</text></svg>" alt="BOT PAPA Logo" />
         </div>
         <div class="brand-text-block">
           <div class="brand-text-title">Global Hub</div>
@@ -448,83 +439,37 @@
       </section>
 
       <aside id="news" class="card">
-        <div class="card-title">
-          Latest Internal <strong>Updates</strong>
-        </div>
+        <div class="card-title">Latest Internal <strong>Updates</strong></div>
         <div class="news-item">
           <div class="news-date">June 6, 2026</div>
           <p style="margin: 0; color: var(--text); font-weight: 600;">Q3 Global Town Hall</p>
-          <p style="color: var(--muted); margin: 4px 0 0 0;">Scheduled for next Thursday at 4 PM CET / 10 AM EST. The link will be shared via our core channels tomorrow morning.</p>
+          <p style="color: var(--muted); margin: 4px 0 0 0;">Scheduled for next Thursday at 4 PM CET / 10 AM EST.</p>
         </div>
         <div class="news-item">
           <div class="news-date">May 28, 2026</div>
           <p style="margin: 0; color: var(--text); font-weight: 600;">Security Policy Updates</p>
-          <p style="color: var(--muted); margin: 4px 0 0 0;">Mandatory Multi-Factor Authentication (MFA) rollouts will activate on internal tool stacks next month. Set up your authentication apps.</p>
-        </div>
-        <div class="news-item">
-          <div class="news-date">May 15, 2026</div>
-          <p style="margin: 0; color: var(--text); font-weight: 600;">Welcome Onboard</p>
-          <p style="color: var(--muted); margin: 4px 0 0 0;">Five new execution specialists are starting their onboarding paths within our distributed operations team this week.</p>
+          <p style="color: var(--muted); margin: 4px 0 0 0;">Mandatory Multi-Factor Authentication (MFA) rollouts activation next month.</p>
         </div>
       </aside>
     </main>
 
     <section class="section" id="trainings">
       <h2><span>🎓</span> Team Academy &amp; Mandatory Training Track</h2>
-      <p class="section-intro">
-        Launch interactive modules to stay certified, keep corporate compliance benchmarks high, and sharpen your professional skillsets.
-      </p>
+      <p class="section-intro">Launch interactive modules to stay certified.</p>
       <div class="section-grid">
         <div class="content-box">
           <div>
             <h3>Global Compliance Track 2026</h3>
-            <p>Annual security, privacy, and international compliance overview. Required for all full-time team staff before Q3 ends.</p>
+            <p>Annual security, privacy, and international compliance overview.</p>
           </div>
           <a href="#" class="btn-primary" style="justify-content: center;">Start Course <span>➔</span></a>
         </div>
         <div class="content-box">
           <div>
             <h3>Agile Operations Blueprint</h3>
-            <p>Our operational playbook explaining how standard sprints, internal issue management, and transparency work inside teams.</p>
+            <p>Our operational playbook explaining how standard sprints work.</p>
           </div>
           <a href="#" class="btn-primary" style="justify-content: center;">Start Course <span>➔</span></a>
-        </div>
-        <div class="content-box">
-          <div>
-            <h3>Cross-Cultural Alignment</h3>
-            <p>Best practices for driving product roadmaps and daily team workflows successfully within highly distributed units.</p>
-          </div>
-          <a href="#" class="btn-primary" style="justify-content: center;">Start Course <span>➔</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="handouts">
-      <h2><span>📄</span> Official Documentation &amp; PDF Handouts</h2>
-      <p class="section-intro">
-        Download verified manuals, company assets, policy guidebooks, and standard operation frameworks.
-      </p>
-      <div class="section-grid">
-        <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px; color: var(--accent);">Corporate Benefit Matrix</h3>
-          <p style="margin: 0 0 10px; color: var(--muted); font-size: 13px;">
-            A complete regional breakdown regarding corporate healthcare contributions, retirement matching tiers, and wellness stipend policies.
-          </p>
-          <a href="#" style="font-size: 12px; font-weight: bold;">Download PDF (3.8 MB) ↗</a>
-        </div>
-        <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px; color: var(--accent);">Global Style &amp; Brand Guide</h3>
-          <p style="margin: 0 0 10px; color: var(--muted); font-size: 13px;">
-            Official logo vectors, approved typography libraries, content voice rules, and master presentation deck layouts.
-          </p>
-          <a href="#" style="font-size: 12px; font-weight: bold;">Download PDF (14.2 MB) ↗</a>
-        </div>
-        <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px; color: var(--accent);">IT Access &amp; VPN Troubleshooting</h3>
-          <p style="margin: 0 0 10px; color: var(--muted); font-size: 13px;">
-            Step-by-step documentation detailing credential resets, device provisions, and secure network connection steps.
-          </p>
-          <a href="#" style="font-size: 12px; font-weight: bold;">Download PDF (1.9 MB) ↗</a>
         </div>
       </div>
     </section>
@@ -535,8 +480,6 @@
         <a href="#">IT Support Helpdesk</a>
         <span>•</span>
         <a href="#">Data Privacy Policy</a>
-        <span>•</span>
-        <a href="#">Code of Conduct</a>
       </div>
     </footer>
   </div>
