@@ -66,45 +66,21 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 24px;
     }
 
-    /* Logo-Container ohne Hintergrund-Box */
-    .brand-mark {
-      height: 65px;   
+    /* Professioneller Logo-Container: Keine Box, volle Transparenz */
+    .brand-logo-container {
+      height: 55px;   
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
     }
 
-    .brand-mark img {
+    .brand-logo-container img {
       height: 100%;
       width: auto;
       object-fit: contain; 
       display: block;
-    }
-
-    .brand-text-block {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      padding-left: 24px;
-    }
-
-    .brand-text-title {
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 18px;
-      color: #ffffff;
-    }
-
-    .brand-text-sub {
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 0.03em;
     }
 
     .header-right {
@@ -366,11 +342,6 @@
         width: 100%;
         justify-content: flex-start;
       }
-      .brand-text-block {
-        border-left: none;
-        padding-left: 0;
-        margin-top: 8px;
-      }
       .grid { grid-template-columns: minmax(0, 1fr); }
       .header-right {
         align-items: flex-start;
@@ -391,12 +362,8 @@
     
     <header>
       <div class="brand">
-        <div class="brand-mark">
-          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 120' width='160' height='60'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%230052cc'/><stop offset='100%' stop-color='%2300a3bf'/></linearGradient></defs><circle cx='50' cy='60' r='38' fill='url(%23grad)'/><circle cx='50' cy='52' r='24' fill='%23ffffff'/><circle cx='42' cy='48' r='3' fill='%23050816'/><circle cx='58' cy='48' r='3' fill='%23050816'/><path d='M40,60 Q50,68 60,60' fill='none' stroke='%23050816' stroke-width='3' stroke-linecap='round'/><path d='M32,32 L44,24 L56,24 L68,32' fill='none' stroke='%230052cc' stroke-width='5' stroke-linecap='round'/><rect x='28' cy='46' width='6' height='14' rx='3' fill='%23050816'/><rect x='66' cy='46' width='6' height='14' rx='3' fill='%23050816'/><path d='M66,56 Q60,72 50,72' fill='none' stroke='%23050816' stroke-width='2'/><path d='M34,68 Q50,62 66,68' fill='%23050816'/><rect x='46' y='76' width='8' height='12' fill='%23ffffff'/><polygon points='44,88 56,88 50,102' fill='%23ff5630'/><text x='105' y='72' font-family='system-ui, sans-serif' font-size='34' fill='%230052cc' font-weight='800'>BOT</text><text x='185' y='72' font-family='system-ui, sans-serif' font-size='34' fill='%23ffab00' font-weight='800'>PAPA</text></svg>" alt="BOT PAPA Logo" />
-        </div>
-        <div class="brand-text-block">
-          <div class="brand-text-title">Global Hub</div>
-          <div class="brand-text-sub">Internal Team Station</div>
+        <div class="brand-logo-container">
+          <img src="BOT_PAPA-removebg.png" alt="BOT PAPA Logo" />
         </div>
       </div>
       <div class="header-right">
