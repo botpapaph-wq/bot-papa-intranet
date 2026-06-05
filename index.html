@@ -1,28 +1,12 @@
-
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-9428336256500980">
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BOT PAPA – KI‑Telefonempfang für Handwerk & Servicebetriebe</title>
-  <meta name="description" content="BOT PAPA entwickelt individuelle KI‑Telefonassistenten für kleine Handwerks- und Servicebetriebe. Kein Anruf geht mehr verloren, wenn Sie auf dem Dach, auf der Baustelle oder bei Kundenterminen sind." />
-
-  <!-- Google Tag Manager -->
-  <script>
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-P5XG82W9');
-  </script>
-  <!-- End Google Tag Manager -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9428336256500980"
-     crossorigin="anonymous"></script>
-
+  <title>Global Team Hub | Intranet</title>
+  
   <style>
+    /* --- EXACT STYLE CODES FROM YOUR TEMPLATE --- */
     :root {
       --bg: #050816;
       --bg-soft: #0b1020;
@@ -35,8 +19,7 @@
       --radius-lg: 18px;
       --radius-full: 999px;
       --border-soft: 1px solid rgba(255, 255, 255, 0.07);
-      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -63,6 +46,7 @@
       padding: 24px 20px 64px;
     }
 
+    /* --- STICKY GLASSMORPHISM HEADER --- */
     header {
       display: flex;
       align-items: center;
@@ -83,26 +67,19 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
     }
 
     .brand-mark {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: #ffffff;
+      font-size: 24px;
+      background: var(--accent-soft);
+      border: var(--border-soft);
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
+      border-radius: 50%;
     }
 
     .brand-text-title {
@@ -125,21 +102,12 @@
       flex: 1;
     }
 
-    .header-top-row {
+    .header-top-row, .header-bottom-row {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 10px;
       width: 100%;
-    }
-
-    .header-bottom-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-      width: 100%;
-      margin-top: 2px;
     }
 
     .pill {
@@ -177,40 +145,17 @@
     .nav-links a:hover {
       border-color: rgba(255, 255, 255, 0.12);
       background: rgba(5, 8, 22, 0.8);
-      text-decoration: none;
+      color: var(--text);
     }
 
-    .lang-switch {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 4px;
-    }
-
-    .lang-switch a {
-      padding: 0;
-      border: none;
-    }
-
-    .lang-flag {
-      font-size: 18px;
-      line-height: 1;
-      display: inline-block;
-      filter: grayscale(60%);
-      transform: translateY(1px);
-    }
-
-    .lang-flag.active {
-      filter: grayscale(0%);
-    }
-
+    /* --- BUTTONS --- */
     .btn-primary {
       border-radius: var(--radius-full);
       padding: 9px 18px;
       border: none;
       outline: none;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -221,22 +166,17 @@
       align-items: center;
       gap: 8px;
       white-space: nowrap;
+      transition: transform 0.2s, filter 0.2s;
     }
 
     .btn-primary span {
-      font-size: 16px;
-      transform: translateY(1px);
+      font-size: 14px;
     }
 
     .btn-primary:hover {
       filter: brightness(1.06);
       transform: translateY(-1px);
-    }
-
-    .btn-primary:active {
-      filter: brightness(0.98);
-      transform: translateY(0);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+      text-decoration: none;
     }
 
     .btn-secondary {
@@ -251,10 +191,7 @@
       gap: 6px;
     }
 
-    .btn-secondary span {
-      font-size: 14px;
-    }
-
+    /* --- RESPONSIVE GRID LAYOUT --- */
     .grid {
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -262,6 +199,7 @@
       align-items: stretch;
     }
 
+    /* --- HERO AREA (WELCOME & HIGHLIGHTS) --- */
     .hero {
       padding: 26px 24px 24px;
       border-radius: var(--radius-lg);
@@ -296,35 +234,13 @@
       margin-bottom: 18px;
     }
 
-    .hero-sub-2 {
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 580px;
-      margin-bottom: 18px;
-    }
-
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 18px;
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .hero-meta span {
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      background: rgba(0, 0, 0, 0.36);
-      border: var(--border-soft);
-    }
-
+    /* --- SIDEBAR CARD (TEXT INFORMATION / NEWS) --- */
     .card {
       padding: 18px 16px;
       border-radius: var(--radius-lg);
@@ -339,13 +255,33 @@
       text-transform: uppercase;
       letter-spacing: 0.09em;
       color: var(--muted);
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .card-title strong {
       color: var(--accent);
     }
 
+    .news-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .news-date {
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    /* --- SECTIONS (TRAINING & HANDOUTS) --- */
     .section {
       margin-top: 28px;
       padding: 20px 18px;
@@ -360,36 +296,50 @@
       margin-top: 0;
       margin-bottom: 8px;
       font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .section p {
-      margin: 0 0 8px;
+    .section p.section-intro {
+      margin: 0 0 16px;
       color: var(--muted);
       font-size: 13px;
     }
 
     .section-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
       margin-top: 12px;
     }
 
-    .contact {
+    .content-box {
+      background: rgba(5, 8, 22, 0.6);
+      border: var(--border-soft);
+      padding: 14px;
+      border-radius: calc(var(--radius-lg) - 4px);
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px 14px;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 8px;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .contact-item strong {
+    .content-box h3 {
+      font-size: 14px;
+      margin: 0 0 6px 0;
       color: var(--text);
     }
 
+    .content-box p {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0 0 14px 0;
+      line-height: 1.4;
+    }
+
+    /* --- FOOTER --- */
     footer {
-      margin-top: 28px;
+      margin-top: 48px;
       padding-top: 16px;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 11px;
@@ -401,167 +351,7 @@
       align-items: center;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Cookie Banner Styles */
-    .cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #1a1a1a;
-      color: #ffffff;
-      padding: 20px;
-      z-index: 9999;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
-      font-family: var(--font-sans);
-    }
-
-    .cookie-content {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .cookie-text {
-      flex: 1;
-      min-width: 300px;
-      margin: 0;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .cookie-link {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    .cookie-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .cookie-btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .cookie-btn-reject {
-      background: #ef5350;
-      color: white;
-    }
-
-    .cookie-btn-reject:hover {
-      background: #c62828;
-    }
-
-    .cookie-btn-settings {
-      background: #424242;
-      color: white;
-      border: 1px solid #757575;
-    }
-
-    .cookie-btn-settings:hover {
-      background: #616161;
-    }
-
-    .cookie-btn-accept {
-      background: #66bb6a;
-      color: white;
-    }
-
-    .cookie-btn-accept:hover {
-      background: #2e7d32;
-    }
-
-    .cookie-btn-save {
-      background: var(--accent);
-      color: #050816;
-      width: 100%;
-      margin-top: 15px;
-      padding: 12px;
-    }
-
-    .cookie-btn-save:hover {
-      filter: brightness(0.9);
-    }
-
-    .cookie-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 10000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .cookie-modal-content {
-      background: white;
-      color: #333;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 600px;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .cookie-close {
-      float: right;
-      font-size: 28px;
-      cursor: pointer;
-      color: #333;
-    }
-
-    .cookie-category {
-      margin: 20px 0;
-      padding: 15px;
-      background: #f5f5f5;
-      border-radius: 5px;
-    }
-
-    .cookie-category label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-
-    .cookie-description {
-      font-size: 13px;
-      color: #666;
-      margin-top: 8px;
-      margin-left: 30px;
-      line-height: 1.4;
-    }
-
+    /* --- RESPONSIVE FIXES --- */
     @media (max-width: 768px) {
       header {
         position: static;
@@ -571,14 +361,10 @@
       .grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      .hero {
-        padding: 22px 18px 18px;
-      }
       .header-right {
         align-items: flex-start;
       }
-      .header-top-row,
-      .header-bottom-row {
+      .header-top-row, .header-bottom-row {
         justify-content: flex-start;
         flex-wrap: wrap;
         row-gap: 6px;
@@ -586,436 +372,170 @@
       .nav-links {
         flex-wrap: wrap;
       }
-      .footer-links {
-        justify-content: flex-start;
-      }
-
-      .cookie-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .cookie-buttons {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .cookie-btn {
-        flex: 1;
-        min-width: 120px;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5XG82W9"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" class="cookie-banner">
-    <div class="cookie-content">
-      <p class="cookie-text">
-        Wir verwenden Cookies, um unsere Website zu verbessern, Ihnen die beste Erfahrung zu bieten und anonymisierte Nutzungsdaten zu sammeln.
-        <strong>Nicht-essentielle Cookies werden standardmäßig blockiert</strong> – Sie können Ihre Präferenzen jederzeit anpassen.
-        <a href="/cookie-policy" target="_blank" class="cookie-link">Mehr erfahren</a>
-      </p>
-      <div class="cookie-buttons">
-        <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
-        <button id="cookie-settings" class="cookie-btn cookie-btn-settings">Einstellungen</button>
-        <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Cookie Preferences Modal -->
-  <div id="cookie-modal" class="cookie-modal">
-    <div class="cookie-modal-content">
-      <span id="cookie-close" class="cookie-close">&times;</span>
-      <h2>Cookie-Einstellungen</h2>
-      <p>Wählen Sie aus, welche Cookies Sie akzeptieren möchten:</p>
-
-      <div class="cookie-category">
-        <label>
-          <input type="checkbox" id="cookie-necessary" checked disabled>
-          <strong>Essentielle Cookies</strong> (erforderlich)
-        </label>
-        <p class="cookie-description">Notwendig für den Betrieb der Website. Kann nicht deaktiviert werden.</p>
-      </div>
-
-      <div class="cookie-category">
-        <label>
-          <input type="checkbox" id="cookie-analytics">
-          <strong>Analyse-Cookies</strong>
-        </label>
-        <p class="cookie-description">Anonymisierte Nutzungsdaten (z. B. Google Analytics). Helfen uns, die Website zu verbessern.</p>
-      </div>
-
-      <div class="cookie-category">
-        <label>
-          <input type="checkbox" id="cookie-functional">
-          <strong>Funktions-Cookies</strong>
-        </label>
-        <p class="cookie-description">Speichern Ihre Einstellungen (z. B. Sprache, Region) für eine bessere Erfahrung.</p>
-      </div>
-
-      <div class="cookie-category">
-        <label>
-          <input type="checkbox" id="cookie-marketing">
-          <strong>Marketing-Cookies</strong>
-        </label>
-        <p class="cookie-description">Werbe-Cookies für maßgeschneiderte Anzeigen (z. B. Meta Pixel, Google Ads).</p>
-      </div>
-
-      <button id="cookie-save" class="cookie-btn cookie-btn-save">Einstellungen speichern</button>
-    </div>
-  </div>
 
   <div class="page">
+    
+    <!-- STICKY HEADER WITH INTRA-NAVIGATION -->
     <header>
       <div class="brand">
-        <div class="brand-mark">
-          <img src="BOT_PAPA-removebg.png" alt="BOT PAPA Logo" />
-        </div>
+        <div class="brand-mark">🌐</div>
         <div>
-          <div class="brand-text-title">BOT PAPA</div>
-          <div class="brand-text-sub">KI‑Telefonassistenten für kleine Unternehmen</div>
+          <div class="brand-text-title">Global Hub</div>
+          <div class="brand-text-sub">Internal Team Station</div>
         </div>
       </div>
       <div class="header-right">
         <div class="header-top-row">
           <div class="pill">
-            Gründer: <strong>Bodo Kopplin</strong>
+            System Status: <strong>Operational</strong>
           </div>
-          <a href="https://meet.brevo.com/bodo-kopplin-online" class="btn-primary" target="_blank" rel="noopener">
-            Kostenfreies 20‑Minuten‑Gespräch <span>↗</span>
+          <a href="#trainings" class="btn-primary">
+            Go to Academy <span>➔</span>
           </a>
         </div>
         <div class="header-bottom-row">
           <nav class="nav-links">
-            <a href="#who">Für wen</a>
-            <a href="#behavior">Verhalten</a>
-            <a href="#about">Über BOT PAPA</a>
-            <a href="über_mich">Über mich</a>
-            <a href="contact.html">Kontakt</a>
-            <div class="lang-switch">
-              <a href="index.html" aria-label="English">
-                <span class="lang-flag">🇺🇸</span>
-              </a>
-              <a href="index_de.html" aria-label="Deutsch">
-                <span class="lang-flag active">🇩🇪</span>
-              </a>
-            </div>
+            <a href="#welcome">Home</a>
+            <a href="#trainings">Trainings</a>
+            <a href="#handouts">PDF Resources</a>
+            <a href="#news">Internal News</a>
           </nav>
         </div>
       </div>
     </header>
 
-    <main class="grid">
+    <!-- TWO-COLUMN HERO AND SIDEBAR SECTION -->
+    <main class="grid" id="welcome">
+      <!-- HERO BOX: MAIN INTERNET WELCOME -->
       <section class="hero">
-        <div class="hero-kicker">KI‑Telefonempfang • Telnyx & Placetel</div>
+        <div class="hero-kicker">Welcome Back Team Member</div>
         <h1 class="hero-title">
-          Kein Anruf mehr verpassen, während Sie <span>auf dem Dach</span>, auf der Baustelle oder bei Kundinnen und Kunden sind.
+          Everything you need to stay synced, <span>aligned</span>, and fully operational across all time zones.
         </h1>
         <p class="hero-sub">
-          BOT PAPA entwickelt individuelle KI‑Telefonassistenten für Handwerks- und Servicebetriebe – damit Ihre
-          Anrufe beantwortet, vorsortiert und dokumentiert werden, auch wenn Sie selbst gerade nicht ans Telefon gehen können.
-        </p>
-        <p class="hero-sub-2">
-          Gemacht für Menschen, die wirklich mit den Händen arbeiten: Maler, Dachdecker, Installateure, Schlosser,
-          Coaches und Personal Trainer – nicht für Kanzleien oder Arztpraxen.
+          Access your professional training tracks, fetch official brand assets, and view critical administrative updates from this secure international node.
         </p>
 
         <div class="hero-actions">
-          <a href="https://meet.brevo.com/bodo-kopplin-online" class="btn-primary" target="_blank" rel="noopener">
-            Kostenloses Erstgespräch buchen <span>✚</span>
+          <a href="#trainings" class="btn-primary">
+            Explore Training Modules <span>✚</span>
           </a>
-          <a href="#status" class="btn-secondary">
-            <span>●</span>
-            Plattform‑Relaunch in Vorbereitung
-          </a>
-        </div>
-
-        <div class="hero-meta">
-          <span>Individueller KI‑Telefonempfang</span>
-          <span>Für Telnyx‑ &amp; Placetel‑Setups</span>
-          <span>Direkte Zusammenarbeit mit dem Erbauer</span>
+          <div class="btn-secondary">
+            US English Edition Defaulted
+          </div>
         </div>
       </section>
 
-      <aside id="status" class="card">
+      <!-- SIDEBAR CARD: INTERNAL TEXT INFORMATION / ALERTS -->
+      <aside id="news" class="card">
         <div class="card-title">
-          Plattform‑Status <strong>Mai 2026</strong>
+          Latest Internal <strong>Updates</strong>
         </div>
-        <p style="color: var(--muted); margin-top: 0; margin-bottom: 10px;">
-          BOT PAPA zieht aktuell auf eine neue Plattform um. Der Dienst wird mit einem frischen Setup und neuen Funktionen wieder online gebracht.
-        </p>
-        <p style="color: var(--muted); margin-bottom: 10px;">
-          Wenn Sie früh dabei sein möchten, buchen Sie einfach ein kostenloses 20‑minütiges Erstgespräch.
-          Wir gehen gemeinsam Ihre Telefonanlage, Ihre Gesprächsabläufe und die realistischen Aufgaben für einen KI‑Empfang durch.
-        </p>
-        <p style="color: var(--muted); margin-bottom: 8px;">
-          Kurze Updates und Einblicke hinter die Kulissen finden Sie hier:
-        </p>
-        <p style="margin: 0;">
-          <a href="https://www.facebook.com/profile.php?id=61589643718976" target="_blank" rel="noopener">
-            BOT PAPA Updates auf Facebook ↗
-          </a>
-        </p>
+        
+        <div class="news-item">
+          <div class="news-date">June 6, 2026</div>
+          <p style="margin: 0; color: var(--text); font-weight: 600;">Q3 Global Town Hall</p>
+          <p style="color: var(--muted); margin: 4px 0 0 0;">Scheduled for next Thursday at 4 PM CET / 10 AM EST. The link will be shared via our core channels tomorrow morning.</p>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">May 28, 2026</div>
+          <p style="margin: 0; color: var(--text); font-weight: 600;">Security Policy Updates</p>
+          <p style="color: var(--muted); margin: 4px 0 0 0;">Mandatory Multi-Factor Authentication (MFA) rollouts will activate on internal tool stacks next month. Set up your authentication apps.</p>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">May 15, 2026</div>
+          <p style="margin: 0; color: var(--text); font-weight: 600;">Welcome Onboard</p>
+          <p style="color: var(--muted); margin: 4px 0 0 0;">Five new execution specialists are starting their onboarding paths within our distributed operations team this week.</p>
+        </div>
       </aside>
     </main>
 
-    <section class="section" id="who">
-      <h2>Für wen BOT PAPA gedacht ist</h2>
-      <p>
-        BOT PAPA ist kein generischer Callcenter‑Bot. Es ist ein speziell eingerichteter Telefonempfang
-        für kleine Betriebe, in denen die Inhaberin oder der Inhaber noch selbst ans Telefon geht – bis die Arbeit
-        auf dem Dach, am Gerüst oder im Studio das unmöglich macht.
+    <!-- CONTENT SECTION 1: TRAININGS -->
+    <section class="section" id="trainings">
+      <h2><span>🎓</span> Team Academy &amp; Mandatory Training Track</h2>
+      <p class="section-intro">
+        Launch interactive modules to stay certified, keep corporate compliance benchmarks high, and sharpen your professional skillsets.
       </p>
+      
+      <div class="section-grid">
+        <div class="content-box">
+          <div>
+            <h3>Global Compliance Track 2026</h3>
+            <p>Annual security, privacy, and international compliance overview. Required for all full-time team staff before Q3 ends.</p>
+          </div>
+          <a href="#" class="btn-primary" style="justify-content: center;">Start Course <span>➔</span></a>
+        </div>
+        
+        <div class="content-box">
+          <div>
+            <h3>Agile Operations Blueprint</h3>
+            <p>Our operational playbook explaining how standard sprints, internal issue management, and transparency work inside teams.</p>
+          </div>
+          <a href="#" class="btn-primary" style="justify-content: center;">Start Course <span>➔</span></a>
+        </div>
+        
+        <div class="content-box">
+          <div>
+            <h3>Cross-Cultural Alignment</h3>
+            <p>Best practices for driving product roadmaps and daily team workflows successfully within highly distributed units.</p>
+          </div>
+          <a href="#" class="btn-primary" style="justify-content: center;">Start Course <span>➔</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT SECTION 2: PDF HANDOUTS & FILES -->
+    <section class="section" id="handouts">
+      <h2><span>📄</span> Official Documentation &amp; PDF Handouts</h2>
+      <p class="section-intro">
+        Download verified manuals, company assets, policy guidebooks, and standard operation frameworks.
+      </p>
+      
       <div class="section-grid">
         <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px;">Handwerk &amp; Außendienst</h3>
-          <p>
-            Maler, Dachdecker, Installateure, Schlosser und ähnliche Gewerke, die ständig auf Baustellen
-            und im Lärm stehen, aber trotzdem jede ernsthafte Anfrage strukturiert festhalten müssen.
+          <h3 style="font-size: 14px; margin: 0 0 4px; color: var(--accent);">Corporate Benefit Matrix</h3>
+          <p style="margin: 0 0 10px; color: var(--muted); font-size: 13px;">
+            A complete regional breakdown regarding corporate healthcare contributions, retirement matching tiers, and wellness stipend policies.
           </p>
+          <a href="#" style="font-size: 12px; font-weight: bold;">Download PDF (3.8 MB) ↗</a>
         </div>
+        
         <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px;">Coaches &amp; persönliche Dienstleistungen</h3>
-          <p>
-            Coaches und Personal Trainer, die den Großteil des Tages in Terminen sind und ihre Kundinnen
-            und Kunden nicht bei jedem Klingeln unterbrechen wollen.
+          <h3 style="font-size: 14px; margin: 0 0 4px; color: var(--accent);">Global Style &amp; Brand Guide</h3>
+          <p style="margin: 0 0 10px; color: var(--muted); font-size: 13px;">
+            Official logo vectors, approved typography libraries, content voice rules, and master presentation deck layouts.
           </p>
+          <a href="#" style="font-size: 12px; font-weight: bold;">Download PDF (14.2 MB) ↗</a>
         </div>
+        
         <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px;">Keine Arztpraxen, keine Kanzleien</h3>
-          <p>
-            BOT PAPA richtet sich bewusst nicht an medizinische Einrichtungen oder Anwaltskanzleien.
-            Der Fokus liegt auf praxisnahen, bodenständigen Dienstleistern mit klaren Leistungen.
+          <h3 style="font-size: 14px; margin: 0 0 4px; color: var(--accent);">IT Access &amp; VPN Troubleshooting</h3>
+          <p style="margin: 0 0 10px; color: var(--muted); font-size: 13px;">
+            Step-by-step documentation detailing credential resets, device provisions, and secure network connection steps.
           </p>
+          <a href="#" style="font-size: 12px; font-weight: bold;">Download PDF (1.9 MB) ↗</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="behavior">
-      <h2>Wie sich Ihr KI‑Telefonassistent verhält</h2>
-      <p>
-        Der Assistent stellt sich klar als KI‑Empfang vor, spricht in natürlicher Telefonsprache
-        und hält sich kurz – wenige Sätze pro Antwort, kein Fachchinesisch, keine falschen Versprechen
-        und keine Hinweise auf interne Technik.
-      </p>
-      <div class="section-grid">
-        <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px;">Klare Gesprächsabläufe</h3>
-          <p>
-            Anruf begrüßen, Anliegen verstehen, dann entweder Rückrufnotiz aufnehmen oder passend
-            weiterleiten – nach Regeln, die explizit auf Ihren Betrieb zugeschnitten werden.
-          </p>
-        </div>
-        <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px;">Keine Halluzinationen</h3>
-          <p>
-            Wenn die KI etwas nicht weiß, sagt sie es offen und nimmt eine Nachricht auf,
-            statt Antworten zu erfinden. Sie behauptet nie, Live‑Daten oder interne Systeme
-            zu sehen, wenn das nicht wirklich angebunden ist.
-          </p>
-        </div>
-        <div>
-          <h3 style="font-size: 14px; margin: 0 0 4px;">Rückruf‑fertige Notizen</h3>
-          <p>
-            Name, Telefonnummer, Anliegen und beste Rückrufzeit werden strukturiert,
-            aber in natürlicher Sprache erfasst – damit Sie die Anfragen zügig
-            zwischen zwei Aufträgen abarbeiten können.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <h2>Über BOT PAPA (Bodo)</h2>
-      <p>
-        BOT PAPA ist kein großer SaaS‑Konzern. Es ist eine Einzelpraxis von Bodo Kopplin mit
-        Schwerpunkt auf KI‑Telefonassistenten und Automatisierung für kleine Unternehmen.
-      </p>
-      <div class="section-grid">
-        <div>
-          <p><strong>Rolle:</strong> Aufbau und laufende Betreuung Ihres KI‑Telefonempfangs – von der ersten Skizze des Gesprächsablaufs bis zum Live‑Betrieb.</p>
-          <p><strong>Tech‑Stack:</strong> KI‑Sprachagenten, angebunden an Telefonanlagen wie Telnyx und Placetel, plus die Integrationen dazwischen.</p>
-        </div>
-        <div>
-          <p><strong>Arbeitsstil:</strong> Direkt, pragmatisch und transparent. Kein Hype, kein Buzzword‑Bingo – sondern klare Absprachen, was die KI übernehmen soll und was ausdrücklich nicht.</p>
-          <p><strong>Sprachen:</strong> Deutsch und Englisch, mit dieser eigenen deutschsprachigen Seite für Kundinnen und Kunden in der DACH‑Region.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <h2>Nächster Schritt: kurzes, fokussiertes Gespräch</h2>
-      <p>
-        Wenn Sie prüfen möchten, ob ein KI‑Telefonempfang für Ihren Betrieb sinnvoll ist,
-        buchen Sie ein kostenfreies, 20‑minütiges Erstgespräch. Keine lange Präsentation –
-        sondern ein klarer Blick auf Ihre Anrufe, Ihre Tools und die realistischen Optionen.
-      </p>
-      <div class="contact">
-        <div class="contact-item">
-          <strong>E‑Mail:</strong>
-          <a href="mailto:support@bot-papa.online">support@bot-papa.online</a>
-        </div>
-        <div class="contact-item">
-          <strong>Telefon:</strong>
-          <a href="tel:+16288959439">+1‑628‑895‑9439</a>
-        </div>
-        <div class="contact-item">
-          <strong>Termin buchen:</strong>
-          <a href="https://meet.brevo.com/bodo-kopplin-online" target="_blank" rel="noopener">
-            Termin über Brevo vereinbaren
-          </a>
-        </div>
-        <div class="contact-item">
-          <strong>Updates:</strong>
-          <a href="https://www.facebook.com/profile.php?id=61589643718976" target="_blank" rel="noopener">
-            BOT PAPA auf Facebook
-          </a>
-        </div>
-      </div>
-      <div style="margin-top: 12px; font-size: 12px; color: var(--muted);">
-        Weitere Fachseiten für einzelne Branchen sowie ein kleiner Onlineshop folgen,
-        sobald der neue Plattform‑Rollout abgeschlossen ist.
-      </div>
-    </section>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9428336256500980"
-     crossorigin="anonymous"></script>
-    <!-- Test für BOT PAPA -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9428336256500980"
-         data-ad-slot="3095316630"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
+    <!-- FOOTER -->
     <footer>
-      <div>© 2026 BOT PAPA – made with love ❤️ in Davao City, Philippines</div>
-      <div><a href="https://www.bot-papa.online" style="color:var(--muted);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">www.bot-papa.online</a></div>
-      <div class="footer-links">
-        <a href="faq-de.html">FAQ</a>
+      <div>© 2026 Global Organization Node – Internal Use Only</div>
+      <div class="nav-links" style="font-size: 11px;">
+        <a href="#">IT Support Helpdesk</a>
         <span>•</span>
-        <a href="impressum.html">Impressum</a>
+        <a href="#">Data Privacy Policy</a>
         <span>•</span>
-        <a href="datenschutz.html">Datenschutzerklärung</a>
-        <span>•</span>
-        <a href="agb.html">AGB</a>
+        <a href="#">Code of Conduct</a>
       </div>
     </footer>
   </div>
 
-  <!-- Cookie Banner JavaScript -->
-  <script>
-  (function() {
-    const cookieBanner = document.getElementById('cookie-banner');
-    const cookieModal = document.getElementById('cookie-modal');
-    const cookieAccept = document.getElementById('cookie-accept');
-    const cookieReject = document.getElementById('cookie-reject');
-    const cookieSettings = document.getElementById('cookie-settings');
-    const cookieClose = document.getElementById('cookie-close');
-    const cookieSave = document.getElementById('cookie-save');
-
-    const cookieConsent = localStorage.getItem('cookieConsent');
-
-    if (!cookieConsent) {
-      cookieBanner.style.display = 'block';
-    } else {
-      cookieBanner.style.display = 'none';
-      loadScripts(JSON.parse(cookieConsent));
-    }
-
-    cookieAccept.addEventListener('click', () => {
-      const consent = {
-        necessary: true,
-        analytics: true,
-        functional: true,
-        marketing: true
-      };
-      saveConsent(consent);
-    });
-
-    cookieReject.addEventListener('click', () => {
-      const consent = {
-        necessary: true,
-        analytics: false,
-        functional: false,
-        marketing: false
-      };
-      saveConsent(consent);
-    });
-
-    cookieSettings.addEventListener('click', () => {
-      cookieModal.style.display = 'flex';
-    });
-
-    cookieClose.addEventListener('click', () => {
-      cookieModal.style.display = 'none';
-    });
-
-    cookieSave.addEventListener('click', () => {
-      const consent = {
-        necessary: true,
-        analytics: document.getElementById('cookie-analytics').checked,
-        functional: document.getElementById('cookie-functional').checked,
-        marketing: document.getElementById('cookie-marketing').checked
-      };
-      saveConsent(consent);
-      cookieModal.style.display = 'none';
-    });
-
-    function saveConsent(consent) {
-      localStorage.setItem('cookieConsent', JSON.stringify(consent));
-      cookieBanner.style.display = 'none';
-      loadScripts(consent);
-      logConsent(consent);
-    }
-
-    function loadScripts(consent) {
-      if (consent.analytics) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('consent', 'update', {
-          'analytics_storage': 'granted'
-        });
-      }
-
-      if (consent.marketing) {
-        if (typeof gtag !== 'undefined') {
-          gtag('consent', 'update', {
-            'ad_storage': 'granted',
-            'ad_user_data': 'granted',
-            'ad_personalization': 'granted'
-          });
-        }
-      }
-    }
-
-    function logConsent(consent) {
-      const consentLog = {
-        timestamp: new Date().toISOString(),
-        consent: consent,
-        userAgent: navigator.userAgent
-      };
-      localStorage.setItem('cookieConsentLog', JSON.stringify(consentLog));
-    }
-
-    window.addEventListener('click', (e) => {
-      if (e.target === cookieModal) {
-        cookieModal.style.display = 'none';
-      }
-    });
-  })();
-  </script>
 </body>
 </html>
