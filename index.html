@@ -355,6 +355,40 @@
       .nav-links { flex-wrap: wrap; }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // ── Auth Guard ──────────────────────────────────────────
+    (async () => {
+      const { createClient } = supabase;
+      const sb = createClient('https://jvujmlssgnqawqqaeqnb.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2dWptbHNzZ25xYXdxcWFlcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MzQwMzcsImV4cCI6MjA5NTUxMDAzN30.H604HEyX8ezyX41JMxT6JcZ1J4wlNBmo_u2LIT5KPiI');
+      const { data } = await sb.auth.getSession();
+      if (!data?.session) {
+        window.location.replace('login/index.html');
+        return;
+      }
+      // Profil prüfen
+      const { data: profile } = await sb
+        .from('intranet_profiles')
+        .select('full_name, role, active')
+        .single();
+      if (!profile?.active) {
+        await sb.auth.signOut();
+        window.location.replace('login/index.html');
+        return;
+      }
+      // Namen + Rolle in Header eintragen
+      const nameEl = document.getElementById('intranet-username');
+      if (nameEl) nameEl.textContent = profile.full_name || data.session.user.email;
+      const roleEl = document.getElementById('intranet-role');
+      if (roleEl) roleEl.textContent = profile.role;
+
+      // Logout
+      document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+        await sb.auth.signOut();
+        window.location.replace('login/index.html');
+      });
+    })();
+  </script>
 </head>
 <body>
 
@@ -369,8 +403,11 @@
       <div class="header-right">
         <div class="header-top-row">
           <div class="pill">
-            System Status: <strong>Operational</strong>
+            <span id="intranet-username">...</span> &nbsp;·&nbsp; <span id="intranet-role" style="color:var(--accent)">...</span>
           </div>
+          <button id="logoutBtn" class="btn-secondary" style="cursor:pointer;">
+            Logout ↩
+          </button>
           <a href="#trainings" class="btn-primary">
             Go to Academy <span>➔</span>
           </a>
