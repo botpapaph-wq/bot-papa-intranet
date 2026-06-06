@@ -1,22 +1,235 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Docs – BOT PAPA</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Docs – BOT PAPA Intranet</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #050816; --bg-card: #0d1428; --bg-side: #080e20;
+      --accent: #00e0ff; --accent2: #7b3fff;
+      --text: #f5f7ff; --muted: #a3aac2;
+      --border: rgba(255,255,255,0.07);
+      --radius: 14px; --font: system-ui,-apple-system,"Segoe UI",sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at top,#101735 0,#050816 55%,#02030a 100%);
+      color: var(--text); font-family: var(--font);
+      display: flex; min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Side Nav */
+    .side-nav {
+      width: 220px; min-height: 100vh; flex-shrink: 0;
+      background: var(--bg-side);
+      border-right: 1px solid var(--border);
+      padding: 24px 16px; display: flex; flex-direction: column; gap: 24px;
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    }
+    .side-logo img { width: 56px; height: 56px; object-fit: contain; }
+    .side-nav ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .side-nav ul a {
+      display: block; padding: 9px 14px; border-radius: 10px;
+      color: var(--muted); font-size: 13px; font-weight: 500;
+      transition: background .15s, color .15s;
+    }
+    .side-nav ul a:hover, .side-nav ul a.active {
+      background: rgba(0,224,255,0.08); color: var(--accent); text-decoration: none;
+    }
+    .side-footer { font-size: 10px; color: var(--muted); margin-top: auto; line-height: 1.5; }
+
+    /* Main */
+    .main { flex: 1; padding: 36px 40px 64px; max-width: 900px; }
+    .page-title {
+      font-size: 26px; font-weight: 700; margin-bottom: 6px;
+      background: linear-gradient(135deg,#fff,var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .page-sub { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+    .section { margin-bottom: 36px; }
+    .section h2 {
+      font-size: 15px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--accent); margin-bottom: 14px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 14px; }
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+    }
+    .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .card p { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+    .card .tag {
+      display: inline-block; padding: 3px 10px; border-radius: 999px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .tag-ready { background: rgba(0,200,150,.12); color: #00c896; }
+    .tag-template { background: rgba(0,224,255,.1); color: var(--accent); }
+    .tag-wip { background: rgba(255,193,7,.1); color: #ffc107; }
+
+    .prose { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .prose strong { color: var(--text); }
+    .prose ul { padding-left: 18px; margin-top: 8px; }
+    .prose li { margin-bottom: 4px; }
+
+    .download-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: 999px;
+      background: linear-gradient(135deg,#00e0ff,#7b3fff);
+      color: #050816; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      transition: filter .2s; text-decoration: none;
+    }
+    .download-btn:hover { filter: brightness(1.1); text-decoration: none; }
+
+    .placeholder-box {
+      border: 1px dashed rgba(0,224,255,0.2); border-radius: var(--radius);
+      padding: 32px; text-align: center; color: var(--muted); font-size: 13px;
+    }
+</style>
 </head>
 <body>
-    <nav class="sidebar">
-        <div class="logo">🎙️ BOT PAPA</div>
-        <ul>
-            <li><a href="/">Dashboard</a></li>
-            <li><a href="/wiki/">Wiki</a></li>
-            <li><a href="/docs/" class="active">Dokumentation</a></li>
-        </ul>
+  
+    <nav class="side-nav">
+      <div class="side-logo">
+        <img src="../pics/BOT_PAPA-removebg.png" alt="BOT PAPA" />
+      </div>
+      <ul>
+        <li><a href="../index.html">🏠 Dashboard</a></li>
+        <li><a href="../wiki/index.html" id="nav-wiki">📚 Wiki</a></li>
+        <li><a href="../docs/index.html" id="nav-docs">📖 Docs</a></li>
+      </ul>
+      <div class="side-footer">© 2026 BOT PAPA<br>Internal Use Only</div>
     </nav>
-    <main class="content">
-        <h1>📖 Dokumentation</h1>
-        <p>Technische Dokumentation und Anleitungen.</p>
-    </main>
+  <div class="main">
+    <div class="page-title">📖 Documentation</div>
+    <div class="page-sub">Technical references, process docs, and integration guides</div>
+
+    <div class="section">
+      <h2>🏗️ Infrastructure</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Stack Overview</h3>
+          <div class="prose">
+            <ul>
+              <li><strong>Website:</strong> bot-papa.online — Cloudflare Pages</li>
+              <li><strong>Intranet:</strong> intranet.bot-papa.online — Cloudflare Pages</li>
+              <li><strong>CRM:</strong> crm.bot-papa.online — Cloudflare Pages</li>
+              <li><strong>DB (Website/Shop):</strong> Supabase jvujmlssgnqawqqaeqnb</li>
+              <li><strong>DB (CRM):</strong> Supabase javbfzuekkmewbzowchj</li>
+              <li><strong>Email:</strong> Brevo (active) + Resend (pending DNS)</li>
+              <li><strong>Telephony:</strong> Placetel (DACH market)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <h3>GitHub Repos</h3>
+          <div class="prose">
+            <ul>
+              <li><a href="https://github.com/botpapaph-wq/bot-papa-website" target="_blank">bot-papa-website</a></li>
+              <li><a href="https://github.com/botpapaph-wq/bot-papa-intranet" target="_blank">bot-papa-intranet</a></li>
+              <li><a href="https://github.com/botpapaph-wq/bot-papa-crm" target="_blank">bot-papa-crm</a></li>
+              <li><a href="https://github.com/botpapaph-wq/malermeister-farbenfroh" target="_blank">malermeister-farbenfroh</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🗄️ Supabase Tables</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>contact_requests_simple</h3>
+          <p>Website contact form leads. Fields: name, email, business, country_code, phone_number, message, source.</p>
+          <span class="tag tag-ready">Active</span>
+        </div>
+        <div class="card">
+          <h3>ai_discovery_forms_v1</h3>
+          <p>Full discovery form submissions (70+ fields). Company info, telephony setup, AI tasks, ROI metrics.</p>
+          <span class="tag tag-ready">Active</span>
+        </div>
+        <div class="card">
+          <h3>intranet_profiles</h3>
+          <p>Intranet user profiles. Roles: owner, franchisee, staff. RLS active — users see only their own data.</p>
+          <span class="tag tag-ready">Active</span>
+        </div>
+        <div class="card">
+          <h3>orders</h3>
+          <p>Shop orders. Fields: customer_name, email, billing_address, product_id, payment_status.</p>
+          <span class="tag tag-wip">Planned</span>
+        </div>
+        <div class="card">
+          <h3>botpapa_bedarf</h3>
+          <p>Legacy DE discovery form. 43 fields. Do not modify.</p>
+          <span class="tag tag-wip">⚠️ Off-limits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>⚡ Edge Functions</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>notify-contact</h3>
+          <p>Triggered by pg_net on INSERT to contact_requests_simple. Sends Brevo email + creates lead in list ID 2.</p>
+          <span class="tag tag-ready">v2 Active</span>
+        </div>
+        <div class="card">
+          <h3>send-contact-email</h3>
+          <p>Resend-based transactional email. Awaiting DNS verification for support@bot-papa.online.</p>
+          <span class="tag tag-wip">v4 Pending DNS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📞 Telephony — Placetel</h2>
+      <div class="prose">
+        <p>BOT PAPA bots run natively inside the customer's <strong>Placetel</strong> account. No external automation (Make.com etc.) required.</p>
+        <ul>
+          <li>Setup time: ~3 hours per customer</li>
+          <li>Bot logic: system prompt via Placetel AI assistant configuration</li>
+          <li>Routing: handled by Placetel native call routing rules</li>
+          <li>Market: DACH (Germany, Austria, Switzerland)</li>
+          <li>English-market equivalent: Webex / RingCentral (planned)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🛒 Shop</h2>
+      <div class="prose">
+        <p>Current shop: <strong>bot-papa.online/shop.html</strong></p>
+        <ul>
+          <li>Payment: PayPal Live (Buy Now buttons only — no webhooks)</li>
+          <li>Product p1: Prompt Engineering PDF — $2.99 ✅</li>
+          <li>Product p2: DE product — placeholder ⚠️</li>
+          <li>Product p3: EN product — placeholder ⚠️</li>
+          <li>Alternative: Odoo shop (decision pending)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const { createClient } = supabase;
+    const sb = createClient(
+      'https://jvujmlssgnqawqqaeqnb.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2dWptbHNzZ25xYXdxcWFlcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MzQwMzcsImV4cCI6MjA5NTUxMDAzN30.H604HEyX8ezyP41JMxT6JcZ1J4wlNBmo_u2LIT5KPiI'
+    );
+    sb.auth.getSession().then(async ({ data }) => {
+      if (!data?.session) { window.location.replace('../login/index.html'); return; }
+      const { data: p } = await sb.from('intranet_profiles').select('active').single();
+      if (!p?.active) { await sb.auth.signOut(); window.location.replace('../login/index.html'); }
+    });
+    document.getElementById('nav-docs')?.classList.add('active');
+  </script>
 </body>
 </html>
