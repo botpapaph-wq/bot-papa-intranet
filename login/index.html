@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login – BOT PAPA Intranet</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #050816; --bg-card: #0d1428; --bg-input: #0a1230;
+      --accent: #00e0ff; --accent-soft: rgba(0,224,255,0.08);
+      --accent2: #7b3fff;
+      --text: #f5f7ff; --muted: #a3aac2; --danger: #ff4757;
+      --border: rgba(255,255,255,0.07); --border-accent: rgba(0,224,255,0.2);
+      --radius: 14px; --radius-full: 999px;
+      --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+      --shadow: 0 18px 45px rgba(0,0,0,0.55);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at top, #101735 0, #050816 55%, #02030a 100%);
+      color: var(--text); font-family: var(--font);
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { width: 100%; max-width: 400px; }
+
+    /* Logo */
+    .logo-block { text-align: center; margin-bottom: 32px; }
+    .logo-circle {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #fff; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .logo-circle img { width: 100%; height: 100%; object-fit: contain; }
+    .logo-title {
+      font-size: 18px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .logo-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* Card */
+    .card {
+      background: linear-gradient(155deg, rgba(8,13,34,0.97), rgba(2,4,13,0.98));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .card-title {
+      font-size: 15px; font-weight: 600;
+      margin-bottom: 20px; color: var(--text);
+    }
+    .card-title span { color: var(--accent); }
+
+    /* Form */
+    .field { margin-bottom: 14px; }
+    label { display: block; font-size: 11px; color: var(--muted);
+             text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+    input {
+      width: 100%; padding: 10px 12px;
+      background: var(--bg-input); color: var(--text);
+      border: 1px solid var(--border); border-radius: 10px;
+      font-family: var(--font); font-size: 14px;
+      outline: none; transition: border-color .2s;
+    }
+    input:focus { border-color: var(--accent); }
+    input::placeholder { color: rgba(163,170,194,.5); }
+
+    /* TOTP-Feld – erst sichtbar wenn nötig */
+    .totp-block { display: none; margin-bottom: 14px; }
+    .totp-block.visible { display: block; }
+    .totp-hint {
+      font-size: 11px; color: var(--muted); margin-top: 5px;
+    }
+
+    /* Button */
+    .btn {
+      width: 100%; padding: 11px;
+      background: linear-gradient(135deg, #00e0ff, #7b3fff);
+      color: #050816; border: none; border-radius: var(--radius-full);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; cursor: pointer;
+      margin-top: 4px; transition: filter .2s, transform .2s;
+    }
+    .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* Status */
+    .status { margin-top: 14px; font-size: 12px; min-height: 18px; text-align: center; }
+    .status.err { color: var(--danger); }
+    .status.ok  { color: #00c896; }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 28px; font-size: 11px; color: var(--muted); text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="logo-block">
+      <div class="logo-circle">
+        <img src="../BOT_PAPA-removebg.png" alt="BOT PAPA" />
+      </div>
+      <div class="logo-title">BOT PAPA</div>
+      <div class="logo-sub">Intranet · Interner Bereich</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Anmelden <span>·</span> Mitarbeiter & Partner</div>
+
+      <div class="field">
+        <label for="email">E-Mail</label>
+        <input id="email" type="email" placeholder="bodo@bot-papa.online" autocomplete="username" />
+      </div>
+
+      <div class="field">
+        <label for="password">Passwort</label>
+        <input id="password" type="password" placeholder="••••••••••" autocomplete="current-password" />
+      </div>
+
+      <div class="totp-block" id="totpBlock">
+        <label for="totp">2-Faktor-Code (Authenticator-App)</label>
+        <input id="totp" type="text" inputmode="numeric" maxlength="6"
+               placeholder="000000" autocomplete="one-time-code" />
+        <div class="totp-hint">6-stelliger Code aus deiner Authenticator-App</div>
+      </div>
+
+      <button class="btn" id="loginBtn" onclick="doLogin()">Anmelden</button>
+      <div class="status" id="status"></div>
+    </div>
+
+    <div class="page-footer">© 2026 BOT PAPA · Interner Bereich</div>
+  </div>
+
+  <script>
+    const { createClient } = supabase;
+    const sb = createClient(
+      'https://jvujmlssgnqawqqaeqnb.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2dWptbHNzZ25xYXdxcWFlcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MzQwMzcsImV4cCI6MjA5NTUxMDAzN30.H604HEyX8ezyP41JMxT6JcZ1J4wlNBmo_u2LIT5KPiI'
+    );
+
+    const statusEl  = document.getElementById('status');
+    const loginBtn  = document.getElementById('loginBtn');
+    const totpBlock = document.getElementById('totpBlock');
+
+    function setStatus(msg, type = '') {
+      statusEl.textContent = msg;
+      statusEl.className = 'status ' + type;
+    }
+
+    async function doLogin() {
+      const email    = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const totpCode = document.getElementById('totp').value.trim();
+
+      if (!email || !password) {
+        setStatus('Bitte E-Mail und Passwort eingeben.', 'err');
+        return;
+      }
+
+      loginBtn.disabled = true;
+      setStatus('Anmeldung läuft…');
+
+      try {
+        // Standard-Login
+        const { data, error } = await sb.auth.signInWithPassword({ email, password });
+
+        if (error) {
+          // MFA erforderlich → TOTP-Feld einblenden
+          if (error.message?.includes('mfa') || error.message?.includes('MFA') ||
+              data?.session === null) {
+            totpBlock.classList.add('visible');
+            setStatus('Bitte 2FA-Code eingeben.', 'ok');
+            loginBtn.disabled = false;
+            return;
+          }
+          setStatus(error.message || 'Anmeldung fehlgeschlagen.', 'err');
+          loginBtn.disabled = false;
+          return;
+        }
+
+        // MFA-Challenge wenn nötig
+        const { data: mfaData } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+        if (mfaData?.nextLevel === 'aal2' && mfaData?.currentLevel !== 'aal2') {
+          if (!totpCode) {
+            totpBlock.classList.add('visible');
+            setStatus('Bitte 2FA-Code eingeben.', 'ok');
+            loginBtn.disabled = false;
+            return;
+          }
+          // TOTP verifizieren
+          const { data: challengeData, error: challengeErr }
+            = await sb.auth.mfa.challenge({ factorId: mfaData.currentAuthenticationMethods[0]?.method || 'totp' });
+
+          if (challengeErr) {
+            setStatus('2FA-Challenge fehlgeschlagen: ' + challengeErr.message, 'err');
+            loginBtn.disabled = false;
+            return;
+          }
+
+          const { error: verifyErr } = await sb.auth.mfa.verify({
+            factorId: challengeData.id,
+            challengeId: challengeData.id,
+            code: totpCode
+          });
+
+          if (verifyErr) {
+            setStatus('Falscher 2FA-Code.', 'err');
+            loginBtn.disabled = false;
+            return;
+          }
+        }
+
+        // Intranet-Profil prüfen (ist der User aktiv & berechtigt?)
+        const { data: profile, error: profileErr } = await sb
+          .from('intranet_profiles')
+          .select('role, active')
+          .single();
+
+        if (profileErr || !profile) {
+          await sb.auth.signOut();
+          setStatus('Kein Intranet-Zugang. Bitte Bodo kontaktieren.', 'err');
+          loginBtn.disabled = false;
+          return;
+        }
+
+        if (!profile.active) {
+          await sb.auth.signOut();
+          setStatus('Zugang deaktiviert. Bitte Bodo kontaktieren.', 'err');
+          loginBtn.disabled = false;
+          return;
+        }
+
+        // Session-Log schreiben
+        await sb.from('intranet_sessions').insert([{
+          user_id: data.user.id,
+          user_agent: navigator.userAgent.substring(0, 200)
+        }]);
+
+        setStatus('Anmeldung erfolgreich!', 'ok');
+        setTimeout(() => { window.location.href = '../index.html'; }, 600);
+
+      } catch(e) {
+        setStatus('Unerwarteter Fehler: ' + e.message, 'err');
+        loginBtn.disabled = false;
+      }
+    }
+
+    // Enter-Taste
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') doLogin();
+    });
+
+    // Bereits eingeloggt? Direkt weiter
+    sb.auth.getSession().then(async ({ data }) => {
+      if (data?.session) {
+        const { data: profile } = await sb
+          .from('intranet_profiles')
+          .select('active')
+          .single();
+        if (profile?.active) window.location.href = '../index.html';
+      }
+    });
+  </script>
+</body>
+</html>
