@@ -359,13 +359,17 @@
   <script>
     // ── Auth Guard (Magic Link) ─────────────────────────────
     const { createClient } = supabase;
-    const sb = createClient('https://jvujmlssgnqawqqaeqnb.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2dWptbHNzZ25xYXdxcWFlcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MzQwMzcsImV4cCI6MjA5NTUxMDAzN30.H604HEyX8ezyP41JMxT6JcZ1J4wlNBmo_u2LIT5KPiI');
+    const sb = createClient(
+      'https://jvujmlssgnqawqqaeqnb.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2dWptbHNzZ25xYXdxcWFlcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MzQwMzcsImV4cCI6MjA5NTUxMDAzN30.H604HEyX8ezyP41JMxT6JcZ1J4wlNBmo_u2LIT5KPiI'
+    );
 
-    async function checkProfile(session) {
-      if (!session) {
-        window.location.replace('login/index.html');
-        return;
-      }
+    let profileLoaded = false;
+
+    async function loadProfile(session) {
+      if (profileLoaded) return;
+      profileLoaded = true;
+
       const { data: profile } = await sb
         .from('intranet_profiles')
         .select('full_name, role, active')
@@ -376,36 +380,54 @@
         window.location.replace('login/index.html');
         return;
       }
-      // Namen + Rolle eintragen
+
+      // Namen + Rolle in Header
       const nameEl = document.getElementById('intranet-username');
       if (nameEl) nameEl.textContent = profile.full_name || session.user.email;
       const roleEl = document.getElementById('intranet-role');
       if (roleEl) roleEl.textContent = profile.role;
 
-      // Session loggen
-      await sb.from('intranet_sessions').insert([{
-        user_id: session.user.id,
-        user_agent: navigator.userAgent.substring(0, 200)
-      }]);
+      // URL Hash sauber entfernen (kein access_token in der Adresszeile)
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname);
+      }
+
+      // Session loggen (einmalig pro Login)
+      const lastLog = sessionStorage.getItem('bp_logged');
+      if (!lastLog) {
+        sessionStorage.setItem('bp_logged', '1');
+        await sb.from('intranet_sessions').insert([{
+          user_id: session.user.id,
+          user_agent: navigator.userAgent.substring(0, 200)
+        }]);
+      }
     }
 
-    // Magic Link callback abfangen (PKCE flow)
+    // onAuthStateChange: fängt Magic Link Token aus URL ab
+    // Supabase erkennt #access_token automatisch und feuert SIGNED_IN
     sb.auth.onAuthStateChange(async (event, session) => {
       if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-        await checkProfile(session);
+        await loadProfile(session);
       } else if (event === 'SIGNED_OUT') {
         window.location.replace('login/index.html');
       }
     });
 
-    // Initiale Session prüfen
+    // Fallback: bereits bestehende Session (kein Magic Link nötig)
     sb.auth.getSession().then(async ({ data }) => {
-      await checkProfile(data?.session);
+      if (data?.session) {
+        await loadProfile(data.session);
+      } else if (!window.location.hash.includes('access_token')) {
+        // Keine Session, kein Token in URL → Login
+        window.location.replace('login/index.html');
+      }
+      // Hat URL einen access_token: onAuthStateChange übernimmt
     });
 
     // Logout
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+        sessionStorage.removeItem('bp_logged');
         await sb.auth.signOut();
         window.location.replace('login/index.html');
       });
