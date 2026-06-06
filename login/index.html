@@ -122,7 +122,7 @@
     const { createClient } = supabase;
     const sb = createClient(
       'https://jvujmlssgnqawqqaeqnb.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2dWptbHNzZ25xYXdxcWFlcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MzQwMzcsImV4cCI6MjA5NTUxMDAzN30.H604HEyX8ezyP41JMxT6JcZ'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2dWptbHNzZ25xYXdxcWFlcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5MzQwMzcsImV4cCI6MjA5NTUxMDAzN30.H604HEyX8ezyP41JMxT6JcZ1J4wl3K9xK2vV8mQ5wJE'
     );
 
     const statusEl = document.getElementById('status');
@@ -171,7 +171,6 @@
       if (e.key === 'Enter') sendMagicLink();
     });
 
-    // ✅ FIX: Wenn bereits eingeloggt, zur ROOT index.html leiten (nicht relativ!)
     sb.auth.getSession().then(async ({ data }) => {
       if (data?.session) {
         const { data: profile } = await sb
@@ -180,7 +179,6 @@
           .single();
           
         if (profile?.active) {
-          // ✅ Absolute URL zur Root → kein Redirect-Loop
           window.location.href = '/index.html';
         } else {
           await sb.auth.signOut();
