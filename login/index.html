@@ -148,8 +148,8 @@
         const { error } = await sb.auth.signInWithOtp({
           email: email,
           options: {
-            shouldCreateUser: true, 
-            emailRedirectTo: window.location.origin + '/index.html' 
+            shouldCreateUser: false, 
+            emailRedirectTo: 'https://intranet.bot-papa.online/index.html' 
           }
         });
 
